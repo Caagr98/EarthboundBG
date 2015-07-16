@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="presets">
+		<item>Fun Naming;230;0</item>
+		<item>Coffee Break;231;232</item>
+		<item>Magic Cake;263;264</item>
+		<item>Sound Stone;228;229</item>
+		<!--  -->
+		<item>Coil Snake;306;307</item>
+		<item>Runaway Dog;260;0</item>
+		<item>Skate Punk, Pogo Punk;6;0</item>
+		<item>Skate Punk, Yes Man Junior;5;0</item>
+		<item>Skate Punk, Yes Man Junior, Pogo Punk;8;0</item>
+		<item>Pogo Punk, Yes Man Junior;7;0</item>
+		<item>Runaway Dog, Cop;1;0</item>
+		<item>Attack Slug;75;0</item>
+		<item>Rowdy Mouse, Attack Slug;72;0</item>
+		<item>Black Antoid, Attack Slug;81;0</item>
+		<item>Black Antoid, Rowdy Mouse;80;0</item>
+		<item>Frank;180;179</item>
+		<item>Rowdy Mouse;217;216</item>
+		<item>Starman Junior;219;218</item>
+		<item>Black Antoid;79;0</item>
+		<item>Black Antoid;9;0</item>
+		<item>Black Antoid, Ramblin\' Evil Mushroom;10;0</item>
+		<item>Cop;184;183</item>
+		<item>Frankystein Mark II;182;181</item>
+		<item>Gruff Goat;122;0</item>
+		<item>Gruff Goat;127;0</item>
+		<item>Ramblin\' Evil Mushroom;12;0</item>
+		<item>Worthless Protoplasm;156;0</item>
+		<item>Worthless Protoplasm;215;214</item>
+		<item>Cranky Lady;14;0</item>
+		<item>Mad Duck;213;212</item>
+		<item>Mad Duck;33;0</item>
+		<item>Mobile Sprout, Ramblin\' Evil Mushroom;212;213</item>
+		<item>Unassuming Local Guy;269;270</item>
+		<item>Unassuming Local Guy;307;306</item>
+		<item>Titanic Ant, Black Antoid;170;169</item>
+		<item>Cave Boy;314;0</item>
+		<item>Mobile Sprout, Li\'l UFO;21;0</item>
+		<item>Li\'l UFO;20;0</item>
+		<item>Mobile Sprout, Territorial Oak;11;0</item>
+		<item>Insane Cultist;16;0</item>
+		<item>Red Antoid, Black Antoid;317;0</item>
+		<item>Mole Playing Rough;82;0</item>
+		<item>Spinning Robo;22;0</item>
+		<item>Everdred;273;272</item>
+		<item>Mr. Batty;89;0</item>
+		<item>Foppy;274;275</item>
+		<item>Foppy;276;277</item>
+		<item>Handsome Tom;25;0</item>
+		<item>Mighty Bear;76;0</item>
+		<item>Trick or Trick Kid, Handsome Tom;3;0</item>
+		<item>Zombie Possessor;152;0</item>
+		<item>Handsome Tom, Smilin\' Sam;15;0</item>
+		<item>Mad Duck, Thirsty Coil Snake;137;0</item>
+		<item>No Good Fly, Putrid Moldyman;28;0</item>
+		<item>Violent Roach;186;185</item>
+		<item>Violent Roach;34;0</item>
+		<item>Zombie Dog, No Good Fly;154;0</item>
+		<item>Zombie Possessor, Urban Zombie;26;0</item>
+		<item>Farm Zombie;281;282</item>
+		<item>Mostly Bad Fly;280;0</item>
+		<item>Struttin\' Evil Mushroom, Tough Mobile Sprout;134;0</item>
+		<item>Urban Zombie;27;0</item>
+		<item>Armored Frog, Farm Zombie;30;0</item>
+		<item>Red Antoid, Armored Frog, Farm Zombie;32;0</item>
+		<item>Urban Zombie, Zombie Dog;153;0</item>
+		<item>Mr. Carpainter;278;0</item>
+		<item>Armored Frog;316;0</item>
+		<item>Plain Crocodile, Red Antoid;31;0</item>
+		<item>Tough Mobile Sprout, Ranboob;133;0</item>
+		<item>Zombie Dog;29;0</item>
+		<item>Criminal Caterpillar;266;267</item>
+		<item>Mondo Mole;172;171</item>
+		<item>Scalding Coffee Cup, Mystical Record, Worthless Protoplasm;159;0</item>
+		<item>Ranboob;132;0</item>
+		<item>Ranboob;135;0</item>
+		<item>Slimy Little Pile;192;191</item>
+		<item>Boogey Tent;293;292</item>
+		<item>Skelpion, Cute Li\'l UFO;259;0</item>
+		<item>Skelpion, Smilin\' Sphere;318;0</item>
+		<item>Trillionage Sprout, Tough Mobile Sprout;174;173</item>
+		<item>Cave Boy, Mighty Bear Seven;131;0</item>
+		<item>Crested Booka, Cute Li\'l UFO, Smilin\' Sphere;319;0</item>
+		<item>Cute Li\'l UFO;155;0</item>
+		<item>Extra Cranky Lady;39;0</item>
+		<item>Master Belch;194;193</item>
+		<item>Spiteful Crow;123;0</item>
+		<item>Spiteful Crow;126;0</item>
+		<item>Spiteful Crow;262;0</item>
+		<item>Mad Taxi;203;202</item>
+		<item>Mad Taxi;41;0</item>
+		<item>Mad Taxi;83;0</item>
+		<item>Thirsty Coil Snake;136;0</item>
+		<item>Desert Wolf;38;0</item>
+		<item>Gigantic Ant;138;0</item>
+		<item>Gigantic Ant;139;0</item>
+		<item>Annoying Reveler;42;0</item>
+		<item>Crested Booka, Bad Buffalo;36;0</item>
+		<item>Scalding Coffee Cup, Mystical Record;84;0</item>
+		<item>Scalding Coffee Cup, Mystical Record;87;0</item>
+		<item>Arachnid!;78;0</item>
+		<item>Bad Buffalo, Desert Wolf;35;0</item>
+		<item>Enraged Fire Plug;162;0</item>
+		<item>Enraged Fire Plug;189;0</item>
+		<item>Enraged Fire Plug;320;0</item>
+		<item>Guardian Digger;196;0</item>
+		<item>Elder Batty, Arachnid!;73;0</item>
+		<item>Crazed Sign;40;0</item>
+		<item>Crazed Sign;48;0</item>
+		<item>Dali\'s Clock;158;0</item>
+		<item>Dali\'s Clock;43;0</item>
+		<item>Musica, Mystical Record;85;0</item>
+		<item>Musica, Mystical Record;86;0</item>
+		<item>Robo-pump, Enraged Fire Plug;288;0</item>
+		<item>Robo-pump, Enraged Fire Plug;45;258</item>
+		<item>Abstract Art;44;0</item>
+		<item>Over Zealous Cop, Tough Guy;49;0</item>
+		<item>Robo-pump;157;0</item>
+		<item>Master Criminal Worm;190;326</item>
+		<item>Strong Crocodile, Arachnid!;74;0</item>
+		<item>Tough Guy;46;0</item>
+		<item>Lesser Mook;161;0</item>
+		<item>Lesser Mook, Whirling Robo;125;0</item>
+		<item>Lesser Mook, Whirling Robo;315;0</item>
+		<item>Lesser Mook, Wooly Shambler;313;0</item>
+		<item>Pit Bull Slug;61;0</item>
+		<item>Sentry Robot;284;0</item>
+		<item>Wooly Shambler, Whirling Robo;130;0</item>
+		<item>Deadly Mouse, Stinky Ghost;143;0</item>
+		<item>Dept. Store Spook;197;0</item>
+		<item>Filthy Attack Roach;140;0</item>
+		<item>Filthy Attack Roach;141;0</item>
+		<item>Thunder Mite;51;0</item>
+		<item>Beautiful UFO;54;0</item>
+		<item>Arachnid!!!;95;0</item>
+		<item>Dread Skelpion, Great Crested Booka;56;0</item>
+		<item>Evil Mani-Mani;302;0</item>
+		<item>High-class UFO, Beautiful UFO;53;0</item>
+		<item>Thunder Mite, Tangoo;304;0</item>
+		<item>Clumsy Robot;285;0</item>
+		<item>Kiss of Death;144;0</item>
+		<item>Lethal Asp Hieroglyph;99;0</item>
+		<item>Stinky Ghost;142;0</item>
+		<item>Fierce Shattered Man, Arachnid!!!;96;0</item>
+		<item>High-class UFO;321;0</item>
+		<item>Plague Rat of Doom;178;177</item>
+		<item>Even Slimier Little Pile, Zap Eel;62;0</item>
+		<item>Fobby;289;0</item>
+		<item>Fobby;290;0</item>
+		<item>Fobby;291;0</item>
+		<item>Fobby;312;0</item>
+		<item>Manly Fish, Hard Crocodile;63;0</item>
+		<item>Shrooom!;168;167</item>
+		<item>Tangoo;146;0</item>
+		<item>Tangoo;305;0</item>
+		<item>Great Crested Booka;52;0</item>
+		<item>Marauder Octobot;55;0</item>
+		<item>Demonic Petunia;59;0</item>
+		<item>Fierce Shattered Man;294;0</item>
+		<item>Fierce Shattered Man;98;0</item>
+		<item>Fierce Shattered Man, Petrified Royal Guard;97;0</item>
+		<item>Shattered Man;195;0</item>
+		<item>Zap Eel, Hard Crocodile;60;0</item>
+		<item>Conducting Menace;145;0</item>
+		<item>Hyper Spinning Robo, Fobby;102;0</item>
+		<item>Uncontrollable Sphere, Fobby;100;0</item>
+		<item>Kraken;201;200</item>
+		<item>Mook Senior;151;0</item>
+		<item>Mook Senior;160;0</item>
+		<item>Mook Senior;198;0</item>
+		<item>Mook Senior;324;0</item>
+		<item>Atomic Power Robot, Starman;243;0</item>
+		<item>Guardian General;208;0</item>
+		<item>Starman;271;0</item>
+		<item>Starman;283;0</item>
+		<item>Starman, Starman Super;148;0</item>
+		<item>Mr. Molecule;68;0</item>
+		<item>Starman Super, Atomic Power Robot;286;0</item>
+		<item>Thunder and Storm;176;175</item>
+		<item>Uncontrollable Sphere;311;0</item>
+		<item>Big Pile of Puke;58;0</item>
+		<item>Evil Elemental;104;0</item>
+		<item>Evil Elemental, Psychic Psycho;325;0</item>
+		<item>Hyper Spinning Robo, Conducting Spirit;310;0</item>
+		<item>Uncontrollable Sphere, Conducting Spirit;309;0</item>
+		<item>Atomic Power Robot, Military Octobot;287;0</item>
+		<item>Care Free Bomb, Mr. Molecule;71;0</item>
+		<item>Ego Orb;66;0</item>
+		<item>Evil Elemental, Soul Consuming Flame;299;0</item>
+		<item>Psychic Psycho;303;0</item>
+		<item>Conducting Spirit;103;0</item>
+		<item>Hostile Elder Oak;57;0</item>
+		<item>Loaded Dice;323;0</item>
+		<item>Loaded Dice;67;0</item>
+		<item>Soul Consuming Flame;106;0</item>
+		<item>Wetnosaur;64;0</item>
+		<item>Care Free Bomb;322;0</item>
+		<item>Master Barf;211;210</item>
+		<item>Psychic Psycho, Major Psychic Psycho;105;0</item>
+		<item>Chomposaur;65;0</item>
+		<item>Electro Swoosh;268;0</item>
+		<item>Evil Eye, Mechanical Octobot;116;0</item>
+		<item>Ghost of Starman, Evil Eye;114;0</item>
+		<item>Ghost of Starman, Mechanical Octobot, Evil Eye;117;0</item>
+		<item>Starman Deluxe;199;0</item>
+		<item>Ghost of Starman, Nuclear Reactor Robot;107;0</item>
+		<item>Ghost of Starman, Nuclear Reactor Robot;297;0</item>
+		<item>Electro Specter;164;163</item>
+		<item>Ghost of Starman, Final Starman, Nuclear Reactor Robot;301;0</item>
+		<item>Ghost of Starman, Mechanical Octobot;115;0</item>
+		<item>Nuclear Reactor Robot, Final Starman;110;0</item>
+		<item>Ultimate Octobot, Nuclear Reactor Robot;209;0</item>
+		<item>Wild \'n Wooly Shambler, Ultimate Octobot;111;0</item>
+		<item>Ghost of Starman, Final Starman;300;0</item>
+		<item>Squatter Demon;296;0</item>
+		<item>Bionic Kraken;109;0</item>
+		<item>Carbon Dog;166;165</item>
+		<item>French Kiss of Death;70;0</item>
+		<item>Ness\'s Nightmare;298;0</item>
+		<item>Giygas, Heavily Armed Pokey;220;0</item>
+		<item>Giygas, Heavily Armed Pokey;222;221</item>
+		<item>Giygas;224;223</item>
+		<item>Giygas;225;0</item>
+		<item>Giygas;226;0</item>
+		<item>Giygas;227;0</item>
+	</string-array>
+</resources>
