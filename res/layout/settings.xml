@@ -44,6 +44,7 @@
 				android:layout_weight="1" />
 		</LinearLayout>
 	</RelativeLayout>
+	<View style="@style/DividerVert" />
 	<android.opengl.GLSurfaceView
 		android:id="@+id/gl"
 		android:layout_width="0dp"
