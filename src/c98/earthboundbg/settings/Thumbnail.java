@@ -1,6 +1,6 @@
 package c98.earthboundbg.settings;
 
-import static c98.earthboundbg.settings.EBSettingsActivity.*;
+import static c98.earthboundbg.settings.EBSettingsActivity.COUNT;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.widget.ImageView;
@@ -40,33 +40,38 @@ public class Thumbnail {
 			return b;
 		}
 		
-		@Override protected void onPostExecute(Bitmap result) {
-			if(v.getContentDescription().equals("" + id1 + "," + id2)) v.setImageBitmap(result);
+		private static Bitmap getThumbnail(int num) {
+			if(thumbnails[num] != null) return thumbnails[num];
+			Bitmap bitmap = Bitmap.createBitmap(32, 32, Bitmap.Config.ARGB_8888);
+			int[] rgb = new int[32 * 32];
+			Background bg = Background.readBackground(num);
+			bg.drawThumb(rgb, bg.frames / 2);
+			bitmap.setPixels(rgb, 0, 32, 0, 0, 32, 32);
+			thumbnails[num] = bitmap;
+			return bitmap;
 		}
 		
+		@Override protected void onPostExecute(Bitmap result) {
+			if(v.getContentDescription().equals(id1 + "," + id2)) v.setImageBitmap(result);
+		}
 	}
 	
-	private static volatile Bitmap[] thumbnails = new Bitmap[COUNT * COUNT];
+	private static volatile Bitmap[] thumbnails;
+	static {
+		clearCache();
+	}
 	
 	public static void getThumbnail(ImageView view, int i, int j) {
 		if(thumbnails[i + j * COUNT] != null) {
 			view.setImageBitmap(thumbnails[i + j * COUNT]);
 			return;
 		}
-		view.setContentDescription("" + i + "," + j);
+		view.setContentDescription(i + "," + j);
 		view.setImageDrawable(null);
 		new ThumbTask(view, i, j).execute();
 	}
 	
-	private static Bitmap getThumbnail(int num) {
-		if(thumbnails[num] != null) return thumbnails[num];
-		Bitmap bitmap = Bitmap.createBitmap(32, 32, Bitmap.Config.ARGB_8888);
-		int[] rgb = new int[32 * 32];
-		Background bg = Background.readBackground(num);
-		bg.drawThumb(rgb, bg.frames / 2);
-		bitmap.setPixels(rgb, 0, 32, 0, 0, 32, 32);
-		thumbnails[num] = bitmap;
-		return bitmap;
+	public static void clearCache() {
+		thumbnails = new Bitmap[COUNT * COUNT];
 	}
-	
 }

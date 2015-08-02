@@ -39,14 +39,14 @@ public class EBRenderer implements android.opengl.GLSurfaceView.Renderer {
 	
 	@Override public void onSurfaceChanged(GL10 glUnused, int width, int height) {
 		glViewport(0, 0, width, height);
-		float x = width / 256F / 2;
-		float y = height / 256F / 2;
+		float x = width / 2F;
+		float y = height / 2F;
 		//@off
 		float[] verts = {
-				-1, 1,	-x+0.5F, -y+0.5F,
-				-1, -1,	-x+0.5F,  y+0.5F,
-				1, 1,	 x+0.5F, -y+0.5F,
-				1, -1,	 x+0.5F,  y+0.5F,
+				-1, 1,	0.5F-x, 0.5F-y,
+				-1, -1,	0.5F-x, 0.5F+y,
+				1, 1,	0.5F+x, 0.5F-y,
+				1, -1,	0.5F+x, 0.5F+y,
 		};
 		//@on
 		vertBuf = ByteBuffer.allocateDirect(verts.length * 4).order(ByteOrder.nativeOrder());

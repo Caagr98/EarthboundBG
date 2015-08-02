@@ -15,15 +15,13 @@ import c98.earthboundbg.*;
 public class EBSettingsActivity extends Activity {
 	private static class BGAdapter extends BaseAdapter {
 		private List<Integer> list;
-		private Activity c;
 		
-		public BGAdapter(Activity c, List<Integer> list) {
+		public BGAdapter(List<Integer> list) {
 			this.list = list;
-			this.c = c;
 		}
 		
 		@Override public View getView(int position, View convertView, ViewGroup parent) {
-			ViewGroup v = convertView != null ? (ViewGroup)convertView : (ViewGroup)c.getLayoutInflater().inflate(R.layout.settings_item, parent, false);
+			ViewGroup v = convertView != null ? (ViewGroup)convertView : (ViewGroup)LayoutInflater.from(parent.getContext()).inflate(R.layout.settings_item, parent, false);
 			((TextView)v.findViewById(R.id.name)).setText("" + list.get(position));
 			Thumbnail.getThumbnail((ImageView)v.findViewById(R.id.preview), list.get(position), 0);
 			return v;
@@ -56,7 +54,7 @@ public class EBSettingsActivity extends Activity {
 				for(int i = 1; i < COUNT; i++)
 					if(Background.exists(i)) allValues.add(i);
 				AlertDialog.Builder b = new AlertDialog.Builder(EBSettingsActivity.this);
-				b.setAdapter(new BGAdapter(EBSettingsActivity.this, allValues), new DialogInterface.OnClickListener() {
+				b.setAdapter(new BGAdapter(allValues), new DialogInterface.OnClickListener() {
 					@Override public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 						add(allValues.get(which));
@@ -71,7 +69,7 @@ public class EBSettingsActivity extends Activity {
 				b.setAdapter(new Preset.PresetAdapter(), new DialogInterface.OnClickListener() {
 					@Override public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
-						Preset.add(which);
+						Preset.add(EBSettingsActivity.this, which);
 					}
 				});
 				b.create().show();
@@ -93,7 +91,7 @@ public class EBSettingsActivity extends Activity {
 	}
 	
 	private void update() {
-		((ListView)findViewById(R.id.list)).setAdapter(new BGAdapter(this, Config.get(this)));
+		((ListView)findViewById(R.id.list)).setAdapter(new BGAdapter(Config.get(this)));
 		renderer.update();
 	}
 	
@@ -109,6 +107,11 @@ public class EBSettingsActivity extends Activity {
 	@Override protected void onPause() {
 		super.onPause();
 		getGL().onPause();
+	}
+	
+	@Override protected void onStop() {
+		super.onStop();
+		Thumbnail.clearCache();
 	}
 	
 	public void add(Integer id) {

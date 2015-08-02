@@ -43,16 +43,9 @@ public class BackgroundLayer {
 			EBRenderer.glError("Post palette " + frame);
 		}
 		
-		program = Shaders.getProgram(bg.animType);
+		program = Shaders.getProgram(bg);
 		glUseProgram(program);
 		EBRenderer.glError("Post shader");
-		uniform("ampl", bg.animAmpl);
-		uniform("amplA", bg.animAmplA);
-		uniform("freq", bg.animFreq);
-		uniform("freqA", bg.animFreqA);
-		uniform("comp", bg.animComp);
-		uniform("compA", bg.animCompA);
-		uniform("speed", bg.animSpeed);
 		uniformI("texture", 0);
 		uniformI("palette", 1);
 		palSpeed = bg.palSpeed;
@@ -71,10 +64,11 @@ public class BackgroundLayer {
 	}
 	
 	public void render(int t, int num) {
+		t *= 2;
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, palettes[t * 2 / (palSpeed + 1) % palettes.length]);
+		glBindTexture(GL_TEXTURE_2D, palettes[palSpeed == 0 ? 0 : t / palSpeed % palettes.length]);
 		glUseProgram(program);
 		uniform("t", t);
 		uniform("alpha", 1F / num);
@@ -86,5 +80,4 @@ public class BackgroundLayer {
 		glDeleteTextures(palettes.length, IntBuffer.wrap(palettes));
 		glDeleteProgram(program);
 	}
-	
 }

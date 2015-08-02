@@ -1,6 +1,7 @@
 package c98.earthboundbg;
 
 import static android.opengl.GLES20.*;
+import java.util.Locale;
 
 public class Shaders {
 	// @off
@@ -14,56 +15,61 @@ public class Shaders {
 			+ "\n	}";
 	private static final String frag = ""
 			+ "  	precision mediump float;"
-			+ "\n	#define M_PI 3.1415926535897932384626433832795"
 			+ "\n	varying vec2 uv;"
 			+ "\n	uniform sampler2D texture;"
 			+ "\n	uniform sampler2D palette;"
 			+ "\n	uniform float t;"
 			+ "\n	uniform float alpha;"
-			+ "\n	uniform float ampl;" //TODO those don't need to be uniforms, they can be constants
-			+ "\n	uniform float freq;"
-			+ "\n	uniform float comp;"
-			+ "\n	uniform float amplA;"
-			+ "\n	uniform float freqA;"
-			+ "\n	uniform float compA;"
-			+ "\n	uniform float speed;"
-			+ "\n	float offset() {"
-			+ "\n		float y = uv.y * 256.0;"
-			+ "\n		"
-			+ "\n		float C1 = 1.0 / 512.0;"
-			+ "\n		float C2 = 8.0 * M_PI / (1024.0 * 256.0);"
-			+ "\n		float C3 = M_PI / 60.0;"
-			+ "\n		"
-			+ "\n		float amplitude = ampl + amplA * t * 2.0;"
-			+ "\n		float frequency = freq + freqA * t * 2.0;"
-			+ "\n		float compression = comp + compA * t * 2.0;"
-			+ "\n		"
-			+ "\n		float S = (C1 * amplitude * sin(C2 * frequency * y + C3 * speed * t));"
-			+ "\n		"
-			+ "\n		return $value;"
-			+ "\n	}"
 			+ "\n	void main() {"
-			+ "\n		float S = offset() / 256.0;"
+			+ "\n		float y = uv.y;"
+			+ "\n		"
 			+ "\n		vec2 uv2 = uv;"
-			+ "\n		$transform;"
-			+ "\n		float idx = texture2D(texture, uv2).x * 16.0;"
-			+ "\n		vec3 rgb = texture2D(palette, vec2(idx, 0)).bgr;"
-			+ "\n	//	rgb = vec3(idx, idx, idx);"
+			+ "\n		$calc;"
+			+ "\n		float idx = texture2D(texture, uv2 / 256.0).x;"
+			+ "\n		vec3 rgb = texture2D(palette, vec2(idx * 16.0, 0)).bgr;"
 			+ "\n		gl_FragColor = vec4(rgb, alpha);"
 			+ "\n	}";
 	//@on
-	private static String frag(int type) { //Basically a shitty preprocessor
-		String f = frag;
-		if(type == 0) f = f.replace("$value", "S");
-		if(type == 1) f = f.replace("$value", "mod(y, 2.0) < 1.0 ? -S : S");
-		if(type == 2) f = f.replace("$value", "y * (1.0 + compression / 256.0) + S");
+	private static String frag(Background bg) {
+		//0: no animation, only palette
+		//1: horizontal
+		//2: interlaced
+		//3: vertical
+		//4: interlaced
+		String a = get(bg.animAmpl, bg.animAmplA, 1 / 512.0);
+		String f = get(bg.animFreq, bg.animFreqA, Math.PI * 2 / 256 / 256);
+		String c = get(bg.animComp, bg.animCompA, 1);
+		String p = get(0, bg.animSpeed, Math.PI * 2 / 120.0);
 		
-		if(type == 2) f = f.replace("$transform", "uv2.y = S");
-		if(type != 2) f = f.replace("$transform", "uv2.x += S");
-		return f;
+		String S = String.format(Locale.US, "%s * sin(%s * y + %s)", a, f, p);
+		
+		switch(bg.animType) {
+			case 0:
+				return frag.replace("$calc", "");
+			case 1:
+				return frag.replace("$calc", "uv2.x += " + S);
+			case 2:
+			case 4:
+				return frag.replace("$calc", "uv2.x += " + S + " * (mod(y, 2.0) < 1.0 ? -1.0 : 1.0)");
+			case 3:
+				return frag.replace("$calc", "uv2.y += y * " + c + " + " + S);
+		}
+		
+		return null;
+	}
+	
+	private static String get(float anim, float animA, double mult) {
+		float multf = (float)mult;
+		String a = "" + anim * multf;
+		String b = "t * " + animA * multf;
+		if(anim == 0 && animA == 0) return "0.0";
+		if(anim != 0 && animA == 0) return a;
+		if(anim == 0 && animA != 0) return b;
+		return a + " + " + b;
 	}
 	
 	private static int loadShaders(String vert, String frag) {
+		System.out.println(frag);
 		int pid = glCreateProgram();
 		
 		int vid = glCreateShader(GL_VERTEX_SHADER);
@@ -88,7 +94,7 @@ public class Shaders {
 		return pid;
 	}
 	
-	public static int getProgram(int type) {
-		return loadShaders(vert, frag(type));
+	public static int getProgram(Background bg) {
+		return loadShaders(vert, frag(bg));
 	}
 }

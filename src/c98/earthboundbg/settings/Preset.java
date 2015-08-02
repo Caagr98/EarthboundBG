@@ -2,16 +2,14 @@ package c98.earthboundbg.settings;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.*;
 import c98.earthboundbg.R;
 
 public class Preset {
-	
 	public static class PresetAdapter extends BaseAdapter {
 		@Override public View getView(int position, View convertView, ViewGroup parent) {
-			ViewGroup v = convertView != null ? (ViewGroup)convertView : (ViewGroup)c.getLayoutInflater().inflate(R.layout.settings_item, parent, false);
+			ViewGroup v = convertView != null ? (ViewGroup)convertView : (ViewGroup)LayoutInflater.from(parent.getContext()).inflate(R.layout.settings_item, parent, false);
 			Preset p = presets.get(position);
 			((TextView)v.findViewById(R.id.name)).setText(p.name);
 			Thumbnail.getThumbnail((ImageView)v.findViewById(R.id.preview), p.a, p.b);
@@ -31,12 +29,10 @@ public class Preset {
 		}
 	}
 	
-	private static EBSettingsActivity c;
 	private static List<Preset> presets = new ArrayList();
 	
 	public static void init(EBSettingsActivity c) {
 		presets.clear();
-		Preset.c = c;
 		for(String line:c.getResources().getStringArray(R.array.presets)) {
 			String[] parts = line.split(";");
 			Preset p = new Preset();
@@ -55,7 +51,7 @@ public class Preset {
 	private String name;
 	private int a, b;
 	
-	public static void add(int id) {
+	public static void add(EBSettingsActivity c, int id) {
 		Preset p = presets.get(id);
 		if(p.a != 0) c.add(p.a);
 		if(p.b != 0) c.add(p.b);
