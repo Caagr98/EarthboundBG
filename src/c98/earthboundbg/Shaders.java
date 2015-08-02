@@ -21,8 +21,6 @@ public class Shaders {
 			+ "\n	uniform float t;"
 			+ "\n	uniform float alpha;"
 			+ "\n	void main() {"
-			+ "\n		float y = uv.y;"
-			+ "\n		"
 			+ "\n		vec2 uv2 = uv;"
 			+ "\n		$calc;"
 			+ "\n		float idx = texture2D(texture, uv2 / 256.0).x;"
@@ -40,8 +38,9 @@ public class Shaders {
 		String f = get(bg.animFreq, bg.animFreqA, Math.PI * 2 / 256 / 256);
 		String c = get(bg.animComp, bg.animCompA, 1);
 		String p = get(0, bg.animSpeed, Math.PI * 2 / 120.0);
+		String y = "uv.y";
 		
-		String S = String.format(Locale.US, "%s * sin(%s * y + %s)", a, f, p);
+		String S = String.format(Locale.US, "%s * sin(%s * %s + %s)", a, f, y, p);
 		
 		switch(bg.animType) {
 			case 0:
@@ -50,9 +49,9 @@ public class Shaders {
 				return frag.replace("$calc", "uv2.x += " + S);
 			case 2:
 			case 4:
-				return frag.replace("$calc", "uv2.x += " + S + " * (mod(y, 2.0) < 1.0 ? -1.0 : 1.0)");
+				return frag.replace("$calc", "uv2.x += " + S + " * (mod(uv.y, 2.0) < 1.0 ? -1.0 : 1.0)");
 			case 3:
-				return frag.replace("$calc", "uv2.y += y * " + c + " + " + S);
+				return frag.replace("$calc", "uv2.y += " + S + " + " + c + " * " + y);
 		}
 		
 		return null;
