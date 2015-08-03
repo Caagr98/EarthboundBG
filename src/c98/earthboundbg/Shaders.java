@@ -33,7 +33,7 @@ public class Shaders {
 		//1: horizontal
 		//2: interlaced
 		//3: vertical
-		//4: interlaced
+		//4: interlaced again?
 		String a = get(bg.animAmpl, bg.animAmplA, 1 / 512.0);
 		String f = get(bg.animFreq, bg.animFreqA, Math.PI * 2 / 256 / 256);
 		String c = get(bg.animComp, bg.animCompA, 1);
@@ -49,7 +49,7 @@ public class Shaders {
 				return frag.replace("$calc", "uv2.x += " + S);
 			case 2:
 			case 4:
-				return frag.replace("$calc", "uv2.x += " + S + " * (mod(uv.y, 2.0) < 1.0 ? -1.0 : 1.0)");
+				return frag.replace("$calc", "uv2.x += " + S + " * (mod(gl_FragCoord.y, 2.0) < 1.0 ? -1.0 : 1.0)");
 			case 3:
 				return frag.replace("$calc", "uv2.y += " + S + " + " + c + " * " + y);
 		}
@@ -68,7 +68,6 @@ public class Shaders {
 	}
 	
 	private static int loadShaders(String vert, String frag) {
-		System.out.println(frag);
 		int pid = glCreateProgram();
 		
 		int vid = glCreateShader(GL_VERTEX_SHADER);
