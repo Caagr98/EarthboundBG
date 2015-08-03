@@ -49,7 +49,7 @@ public class Shaders {
 				return frag.replace("$calc", "uv2.x += " + S);
 			case 2:
 			case 4:
-				return frag.replace("$calc", "uv2.x += " + S + " * (mod(gl_FragCoord.y, 2.0) < 1.0 ? -1.0 : 1.0)");
+				return frag.replace("$calc", "uv2.x += " + S + " * cos(" + y + " * " + Math.PI + ")");
 			case 3:
 				return frag.replace("$calc", "uv2.y += " + S + " + " + c + " * " + y);
 		}
