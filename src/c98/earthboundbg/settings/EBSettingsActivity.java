@@ -91,7 +91,7 @@ public class EBSettingsActivity extends Activity {
 	}
 	
 	private void update() {
-		((ListView)findViewById(R.id.list)).setAdapter(new BGAdapter(Config.get(this)));
+		((ListView)findViewById(R.id.list)).setAdapter(new BGAdapter(new Config(this).layers));
 		renderer.update();
 	}
 	
@@ -115,16 +115,16 @@ public class EBSettingsActivity extends Activity {
 	}
 	
 	public void add(Integer id) {
-		List<Integer> list = Config.get(this);
-		list.add(id);
-		Config.set(this, list);
+		Config c = new Config(this);
+		c.layers.add(id);
+		c.save();
 		update();
 	}
 	
 	public void remove(int pos) {
-		List<Integer> list = Config.get(this);
-		list.remove(pos);
-		Config.set(this, list);
+		Config c = new Config(this);
+		c.layers.remove(pos);
+		c.save();
 		update();
 	}
 }

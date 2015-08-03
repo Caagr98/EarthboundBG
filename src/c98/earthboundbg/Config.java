@@ -5,31 +5,45 @@ import android.content.*;
 import android.content.SharedPreferences.Editor;
 
 public class Config {
-	private static SharedPreferences getPrefs(Context c) {
-		return c.getSharedPreferences("EBBGList", 0);
+	private static final String CFG_LIST = "EBBGList";
+	private static final String KEY_COUNT = "count";
+	private static final String KEY_VAL = "val";
+	
+	private static final String CFG_MISC = "EBBGSettings";
+	private static final String KEY_INTERLACE = "smoothInterlace";
+	private static final String KEY_SCALE = "scale";
+	
+	private Context c;
+	
+	public List<Integer> layers = new ArrayList(Arrays.asList(230));
+	public boolean smoothInterlace;
+	public float scale = 1;
+	
+	public Config(Context context) {
+		c = context;
+		SharedPreferences listPrefs = c.getSharedPreferences(CFG_LIST, 0);
+		if(listPrefs.contains(KEY_COUNT)) {
+			layers.clear();
+			int count = listPrefs.getInt(KEY_COUNT, 0);
+			for(int i = 0; i < count; i++)
+				layers.add(listPrefs.getInt(KEY_VAL + i, 0));
+		}
+		
+		SharedPreferences miscPrefs = c.getSharedPreferences(CFG_MISC, 0);
+		smoothInterlace = miscPrefs.getBoolean(KEY_INTERLACE, smoothInterlace);
+		scale = miscPrefs.getFloat(KEY_SCALE, scale);
 	}
 	
-	public static List<Integer> get(Context c) {
-		SharedPreferences p = getPrefs(c);
-		if(!p.contains("count")) set(p, Arrays.asList(230));
-		int count = p.getInt("count", 0);
-		List<Integer> list = new ArrayList(count);
-		for(int i = 0; i < count; i++)
-			list.add(p.getInt("val" + i, 0));
-		Collections.sort(list);
-		return list;
-	}
-	
-	public static void set(Context c, List<Integer> list) {
-		set(getPrefs(c), list);
-	}
-	
-	private static void set(SharedPreferences p, List<Integer> list) {
-		Editor e = p.edit();
-		e.clear();
-		e.putInt("count", list.size());
-		for(int i = 0; i < list.size(); i++)
-			e.putInt("val" + i, list.get(i));
-		e.commit();
+	public void save() {
+		Editor listPrefs = c.getSharedPreferences(CFG_MISC, 0).edit();
+		listPrefs.putInt(KEY_COUNT, layers.size());
+		for(int i = 0; i < layers.size(); i++)
+			listPrefs.putInt(KEY_VAL + i, layers.get(i));
+		listPrefs.commit();
+		
+		Editor miscPrefs = c.getSharedPreferences(CFG_MISC, 0).edit();
+		miscPrefs.putBoolean(KEY_INTERLACE, smoothInterlace);
+		miscPrefs.putFloat(KEY_SCALE, scale);
+		miscPrefs.commit();
 	}
 }

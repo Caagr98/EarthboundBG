@@ -63,9 +63,10 @@ public class EBRenderer implements android.opengl.GLSurfaceView.Renderer {
 			needSetup = false;
 			if(layers != null) for(BackgroundLayer l:layers)
 				l.delete();
+			Config c = new Config(context);
 			layers = new ArrayList();
-			for(int i:Config.get(context))
-				layers.add(new BackgroundLayer(i));
+			for(int i:c.layers)
+				layers.add(new BackgroundLayer(i, c));
 			t = 0;
 		}
 		

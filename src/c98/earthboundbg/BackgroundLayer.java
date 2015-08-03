@@ -11,7 +11,7 @@ public class BackgroundLayer {
 	private int[] palettes;
 	public int id;
 	
-	public BackgroundLayer(int id) {
+	public BackgroundLayer(int id, Config conf) {
 		this.id = id;
 		Background bg = Background.readBackground(id);
 		
@@ -43,7 +43,7 @@ public class BackgroundLayer {
 			EBRenderer.glError("Post palette " + frame);
 		}
 		
-		program = Shaders.getProgram(bg);
+		program = Shaders.getProgram(bg, conf);
 		glUseProgram(program);
 		EBRenderer.glError("Post shader");
 		uniformI("texture", 0);

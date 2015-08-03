@@ -23,12 +23,12 @@ public class Shaders {
 			+ "\n	void main() {"
 			+ "\n		vec2 uv2 = uv;"
 			+ "\n		$calc;"
-			+ "\n		float idx = texture2D(texture, uv2 / 256.0).x;"
+			+ "\n		float idx = texture2D(texture, uv2 / $scale / 256.0).x;"
 			+ "\n		vec3 rgb = texture2D(palette, vec2(idx * 16.0, 0)).bgr;"
 			+ "\n		gl_FragColor = vec4(rgb, alpha);"
 			+ "\n	}";
 	//@on
-	private static String frag(Background bg) {
+	private static String frag(Background bg, Config conf) {
 		//0: no animation, only palette
 		//1: horizontal
 		//2: interlaced
@@ -42,6 +42,8 @@ public class Shaders {
 		
 		String S = String.format(Locale.US, "%s * sin(%s * %s + %s)", a, f, y, p);
 		
+		String frag = Shaders.frag.replace("$scale", "" + conf.scale);
+		
 		switch(bg.animType) {
 			case 0:
 				return frag.replace("$calc", "");
@@ -49,7 +51,7 @@ public class Shaders {
 				return frag.replace("$calc", "uv2.x += " + S);
 			case 2:
 			case 4:
-				return frag.replace("$calc", "uv2.x += " + S + " * cos(" + y + " * " + Math.PI + ")");
+				return frag.replace("$calc", "uv2.x += " + S + " * cos(" + (conf.smoothInterlace ? y : "floor(" + y + ")") + " * " + Math.PI + ")");
 			case 3:
 				return frag.replace("$calc", "uv2.y += " + S + " + " + c + " * " + y);
 		}
@@ -68,6 +70,7 @@ public class Shaders {
 	}
 	
 	private static int loadShaders(String vert, String frag) {
+		System.out.println(frag);
 		int pid = glCreateProgram();
 		
 		int vid = glCreateShader(GL_VERTEX_SHADER);
@@ -92,7 +95,7 @@ public class Shaders {
 		return pid;
 	}
 	
-	public static int getProgram(Background bg) {
-		return loadShaders(vert, frag(bg));
+	public static int getProgram(Background bg, Config conf) {
+		return loadShaders(vert, frag(bg, conf));
 	}
 }
