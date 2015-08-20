@@ -70,7 +70,6 @@ public class Shaders {
 	}
 	
 	private static int loadShaders(String vert, String frag) {
-		System.out.println(frag);
 		int pid = glCreateProgram();
 		
 		int vid = glCreateShader(GL_VERTEX_SHADER);

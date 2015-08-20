@@ -20,7 +20,7 @@ public class Config {
 	public float scale = 1;
 	
 	public Config(Context context) {
-		c = context;
+		c = context.getApplicationContext();
 		SharedPreferences listPrefs = c.getSharedPreferences(CFG_LIST, 0);
 		if(listPrefs.contains(KEY_COUNT)) {
 			layers.clear();
@@ -35,7 +35,7 @@ public class Config {
 	}
 	
 	public void save() {
-		Editor listPrefs = c.getSharedPreferences(CFG_MISC, 0).edit();
+		Editor listPrefs = c.getSharedPreferences(CFG_LIST, 0).edit();
 		listPrefs.putInt(KEY_COUNT, layers.size());
 		for(int i = 0; i < layers.size(); i++)
 			listPrefs.putInt(KEY_VAL + i, layers.get(i));
