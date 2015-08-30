@@ -37,23 +37,40 @@ public class EBRenderer implements android.opengl.GLSurfaceView.Renderer {
 	
 	private ByteBuffer vertBuf;
 	
+	private int x, y, w, h;
+	private boolean scroll;
+	
 	@Override public void onSurfaceChanged(GL10 glUnused, int width, int height) {
 		glViewport(0, 0, width, height);
-		float x = width / 2F;
-		float y = height / 2F;
+		w = width;
+		h = height;
+		createBuffer();
+		
+		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
+	}
+	
+	public void setOffset(int offX, int offY) {
+		if(scroll) {
+			x = offX;
+			y = offY;
+		} else x = y = 0;
+		createBuffer();
+	}
+	
+	private void createBuffer() {
+		float X = w / 2F;
+		float Y = h / 2F;
 		//@off
 		float[] verts = {
-				-1, 1,	0.5F-x, 0.5F-y,
-				-1, -1,	0.5F-x, 0.5F+y,
-				1, 1,	0.5F+x, 0.5F-y,
-				1, -1,	0.5F+x, 0.5F+y,
+				-1, 1,	0.5F-X-x, 0.5F-Y-y,
+				-1, -1,	0.5F-X-x, 0.5F+Y-y,
+				1, 1,	0.5F+X-x, 0.5F-Y-y,
+				1, -1,	0.5F+X-x, 0.5F+Y-y,
 		};
 		//@on
 		vertBuf = ByteBuffer.allocateDirect(verts.length * 4).order(ByteOrder.nativeOrder());
 		vertBuf.asFloatBuffer().put(verts).flip();
-		
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
 	}
 	
 	@Override public void onDrawFrame(GL10 glUnused) {
@@ -68,6 +85,7 @@ public class EBRenderer implements android.opengl.GLSurfaceView.Renderer {
 			for(int i:c.layers)
 				layers.add(new BackgroundLayer(i, c));
 			t = 0;
+			scroll = c.doScroll;
 		}
 		
 		glVertexAttribPointer(0, 2, GL_FLOAT, false, 16, vertBuf.position(0));
