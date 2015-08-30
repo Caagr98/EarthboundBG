@@ -53,7 +53,7 @@ public class Shaders {
 			case 4:
 				return frag.replace("$calc", "uv2.x += " + S + " * cos(" + (conf.smoothInterlace ? y : "floor(" + y + ")") + " * " + Math.PI + ")");
 			case 3:
-				return frag.replace("$calc", "uv2.y += " + S + " + " + c + " * " + y);
+				return frag.replace("$calc", "uv2.y += " + S + " + " + c + " * " + y + " / 256.0");
 		}
 		
 		return null;
