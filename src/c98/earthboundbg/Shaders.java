@@ -21,9 +21,9 @@ public class Shaders {
 			+ "\n	uniform float t;"
 			+ "\n	uniform float alpha;"
 			+ "\n	void main() {"
-			+ "\n		vec2 uv2 = uv;"
+			+ "\n		vec2 uv2 = uv / $scale;"
 			+ "\n		$calc;"
-			+ "\n		float idx = texture2D(texture, uv2 / $scale / 256.0).x;"
+			+ "\n		float idx = texture2D(texture, uv2 / 256.0).x;"
 			+ "\n		vec3 rgb = texture2D(palette, vec2(idx * 16.0, 0)).bgr;"
 			+ "\n		gl_FragColor = vec4(rgb, alpha);"
 			+ "\n	}";
@@ -38,7 +38,7 @@ public class Shaders {
 		String f = get(bg.animFreq, bg.animFreqA, Math.PI * 2 / 256 / 256);
 		String c = get(bg.animComp, bg.animCompA, 1);
 		String p = get(0, bg.animSpeed, Math.PI * 2 / 120.0);
-		String y = "uv.y";
+		String y = "uv2.y";
 		
 		String S = String.format(Locale.US, "%s * sin(%s * %s + %s)", a, f, y, p);
 		
@@ -51,7 +51,7 @@ public class Shaders {
 				return frag.replace("$calc", "uv2.x += " + S);
 			case 2:
 			case 4:
-				return frag.replace("$calc", "uv2.x += " + S + " * cos(" + (conf.smoothInterlace ? y : "floor(" + y + ")") + " * " + Math.PI + ")");
+				return frag.replace("$calc", "uv2.x += " + S + " * sign(sin(" + y + " * " + Math.PI + "))");
 			case 3:
 				return frag.replace("$calc", "uv2.y += " + S + " + " + c + " * " + y + " / 256.0");
 		}
