@@ -23,7 +23,7 @@ public class EBSettingsActivity extends Activity {
 		@Override public View getView(int position, View convertView, ViewGroup parent) {
 			ViewGroup v = convertView != null ? (ViewGroup)convertView : (ViewGroup)LayoutInflater.from(parent.getContext()).inflate(R.layout.settings_item, parent, false);
 			((TextView)v.findViewById(R.id.name)).setText("" + list.get(position));
-			Thumbnail.getThumbnail((ImageView)v.findViewById(R.id.preview), list.get(position), 0);
+			Thumbnail.getThumbnail((ImageView)v.findViewById(R.id.preview), list.get(position));
 			return v;
 		}
 		

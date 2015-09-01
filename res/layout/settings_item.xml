@@ -2,20 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content" >
-	<ImageView
-		android:id="@+id/preview"
+	<RelativeLayout
+		android:id="@+id/previewBox"
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:layout_alignParentLeft="true"
 		android:layout_centerVertical="true"
-		android:layout_margin="8dp" />
+		android:layout_margin="8dp" >
+		<ImageView
+			android:id="@+id/preview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true" />
+		<ImageView
+			android:id="@+id/preview2"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true" />
+	</RelativeLayout>
 	<TextView
 		android:id="@+id/name"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
 		android:layout_margin="8dp"
-		android:layout_toRightOf="@+id/preview"
+		android:layout_toRightOf="@+id/previewBox"
 		android:minHeight="32dp"
 		android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout>

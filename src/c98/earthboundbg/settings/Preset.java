@@ -12,7 +12,9 @@ public class Preset {
 			ViewGroup v = convertView != null ? (ViewGroup)convertView : (ViewGroup)LayoutInflater.from(parent.getContext()).inflate(R.layout.settings_item, parent, false);
 			Preset p = presets.get(position);
 			((TextView)v.findViewById(R.id.name)).setText(p.name);
-			Thumbnail.getThumbnail((ImageView)v.findViewById(R.id.preview), p.a, p.b);
+			Thumbnail.getThumbnail((ImageView)v.findViewById(R.id.preview), p.a);
+			Thumbnail.getThumbnail((ImageView)v.findViewById(R.id.preview2), p.b);
+			((ImageView)v.findViewById(R.id.preview2)).setAlpha(127); //Can't use XML, doesn't work in API 8
 			return v;
 		}
 		
