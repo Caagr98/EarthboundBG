@@ -71,7 +71,7 @@ public class EBRenderer implements android.opengl.GLSurfaceView.Renderer {
 		//@on
 		for(int i = 0; i < verts.length; i += 4) {
 			verts[i + 2] -= x + w / 2F;
-			verts[i + 3] -= y + 32;
+			verts[i + 3] -= y;
 			verts[i + 3] = (float)Math.floor(verts[i + 3]);
 		}
 		vertBuf = ByteBuffer.allocateDirect(verts.length * 4).order(ByteOrder.nativeOrder());
