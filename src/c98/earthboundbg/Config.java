@@ -28,6 +28,7 @@ public class Config {
 			for(int i = 0; i < count; i++)
 				layers.add(listPrefs.getInt(KEY_VAL + i, 0));
 		}
+		Collections.sort(layers);
 		
 		SharedPreferences miscPrefs = c.getSharedPreferences(CFG_MISC, 0);
 		scale = miscPrefs.getFloat(KEY_SCALE, scale);
