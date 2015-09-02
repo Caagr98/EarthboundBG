@@ -10,25 +10,18 @@
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentRight="true"
 		android:layout_alignParentTop="true" />
-	<RelativeLayout
+	<android.support.v4.view.ViewPager
+		android:id="@+id/pager"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentRight="true"
 		android:layout_alignParentTop="true"
-		android:background="#4F000000"
-		android:baselineAligned="false"
-		android:orientation="horizontal" >
-		<android.support.v4.view.ViewPager
-			android:id="@+id/pager"
+		android:background="#4F000000" >
+		<android.support.v4.view.PagerTabStrip
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_alignParentTop="true" >
-			<android.support.v4.view.PagerTabStrip
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="top" />
-		</android.support.v4.view.ViewPager>
-	</RelativeLayout>
+			android:layout_gravity="top" />
+	</android.support.v4.view.ViewPager>
 </RelativeLayout>
