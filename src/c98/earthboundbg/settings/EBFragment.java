@@ -10,7 +10,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import c98.earthboundbg.R;
 
-//TODO find some better way to leave preview mode
 public class EBFragment extends Fragment {
 	public static interface EBListener {
 		void click(int layer);
