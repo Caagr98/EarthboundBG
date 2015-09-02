@@ -20,7 +20,7 @@ public class EBRenderer implements android.opengl.GLSurfaceView.Renderer {
 	private int t = 0;
 	private List<BackgroundLayer> layers;
 	
-	private boolean needSetup;
+	private List<Integer> nextLayers;
 	
 	@Override public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
 		layers = null;
@@ -32,7 +32,11 @@ public class EBRenderer implements android.opengl.GLSurfaceView.Renderer {
 	}
 	
 	public void update() {
-		needSetup = true;
+		nextLayers = new Config(context).layers;
+	}
+	
+	public void previewLayers(List<Integer> layerInts) {
+		nextLayers = layerInts;
 	}
 	
 	private ByteBuffer vertBuf;
@@ -81,16 +85,17 @@ public class EBRenderer implements android.opengl.GLSurfaceView.Renderer {
 	@Override public void onDrawFrame(GL10 glUnused) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		if(needSetup) {
-			needSetup = false;
+		if(nextLayers != null) {
+			Config c = new Config(context);
 			if(layers != null) for(BackgroundLayer l:layers)
 				l.delete();
-			Config c = new Config(context);
 			layers = new ArrayList();
-			for(int i:c.layers)
+			for(int i:nextLayers)
 				layers.add(new BackgroundLayer(i, c));
 			t = 0;
 			scroll = c.doScroll;
+			
+			nextLayers = null;
 		}
 		
 		glVertexAttribPointer(0, 2, GL_FLOAT, false, 16, vertBuf.position(0));

@@ -20,14 +20,18 @@
 		android:background="#4F000000"
 		android:baselineAligned="false"
 		android:orientation="horizontal" >
-		<ListView
-			android:id="@+id/list"
+		<android.support.v4.view.ViewPager
+			android:id="@+id/pager"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_above="@+id/buttons"
 			android:layout_alignParentTop="true" >
-		</ListView>
-		<LinearLayout
+			<android.support.v4.view.PagerTabStrip
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="top" />
+		</android.support.v4.view.ViewPager>
+		<!--
+        <LinearLayout
 			android:id="@+id/buttons"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -55,5 +59,6 @@
 				android:layout_height="match_parent"
 				android:layout_weight="1" />
 		</LinearLayout>
+		-->
 	</RelativeLayout>
 </RelativeLayout>

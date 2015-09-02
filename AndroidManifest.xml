@@ -30,7 +30,8 @@
 		<activity
 			android:name="c98.earthboundbg.settings.EBSettingsActivity"
 			android:exported="true"
-			android:label="@string/app_settings" >
+			android:label="@string/app_settings"
+			android:theme="@android:style/Theme.NoTitleBar" >
 		</activity>
 	</application>
 </manifest>
