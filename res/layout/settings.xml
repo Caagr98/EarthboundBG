@@ -30,35 +30,5 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="top" />
 		</android.support.v4.view.ViewPager>
-		<!--
-        <LinearLayout
-			android:id="@+id/buttons"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true" >
-			<View
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1" />
-			<Button
-				android:id="@+id/add"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/add" />
-			<View
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1" />
-			<Button
-				android:id="@+id/presets"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/presets" />
-			<View
-				android:layout_width="0dp"
-				android:layout_height="match_parent"
-				android:layout_weight="1" />
-		</LinearLayout>
-		-->
 	</RelativeLayout>
 </RelativeLayout>
